@@ -1,0 +1,30 @@
+[package]
+name = "mvcreader"
+version = "0.1.0"
+edition = "2024"
+description = "MVCreader: lector de documentos PDF, EPUB y DOCX liviano"
+license = "MIT"
+build = "build.rs"
+
+[[bin]]
+name = "MVCreader"
+path = "src/main.rs"
+
+[dependencies]
+eframe = { version = "0.37.0", default-features = false, features = ["glow", "default_fonts"] }
+pdfium-render = { version = "0.9.4", default-features = false, features = ["pdfium_7881", "thread_safe"] }
+zip = { version = "9.1.2", default-features = false, features = ["deflate-flate2"] }
+flate2 = { version = "1", default-features = false, features = ["rust_backend"] }
+quick-xml = "0.42.0"
+image = { version = "0.25.10", default-features = false, features = ["png", "jpeg", "gif"] }
+rfd = { version = "0.17.2", default-features = false }
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.154"
+dirs = "7.0.0"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
